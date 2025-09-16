@@ -1,11 +1,18 @@
-const numerosenha = document.querySelector("parametro-senha_texto");
+const numerosenha = document.querySelector(".parametro-senha_texto");
 let tamanhosenha = 12;
 numerosenha.textContent = tamanhosenha;
+const letramaiusculas = "ABCDEFGHIJKLMNOPQRSTUVXWZ";
+const letraminusculas = "abcdefghijklmnopqrstuvxwz";
+const numero = "0123456789"
+const simbolos = "!@%*?";
 
-const botoes = document.querySelectorAll("parametro-senha_botao");
+const botoes = document.querySelectorAll(".parametro-senha_botao");
+const camposenha = document.querySelector("#campo-senha");
+const checkbox = document.querySelectorAll('.checkbox');
+const forçasenha = document.querySelectorAll('.força');
 
-botoes{0}.onclick = diminuitamanho;
-botoes{1}.onclick = aumentatamanho;
+botoes[0].onclick = diminuitamanho;
+botoes[1].onclick = aumentatamanho;
 
 function diminuitamanho(){ 
     if (tamanhosenha > 1){
@@ -24,12 +31,11 @@ function aumentatamanho(){
     gerasenha();
 }
 
-const camposenha = document.querySelector("#campo-senha");
 
-const letramaiusculas = "ABCDEFGHIJKLMNOPQRSTUVXWZ";
-const letraminusculas = "abcdefghijklmnopqrstuvxwz";
-const numero = "0123456789"
-const simbolos = "!@%*?";
+for (i = 0; i < checkbox.length; i+++){
+    checkbox[i].onclick = gerasenha;
+}
+
 
 gerasenha();
 
@@ -50,10 +56,24 @@ function gerasenha(){
     
     let senha = '';
     for(let i = 0; i <tamanhosenha; i++){
-        let numeroaleatorio = Math.random()* letramaiusculas.length;
+        let numeroaleatorio = Math.random()* alfabeto.length;
         numeroaleatorio = Math.floor(numeroaleatorio);
         senha = senha + alfabeto[numeroaleatorio];
     }
     camposenha.value = senha;
+    classificasenha();
+
+function classificasenha(){
+  forçasenha.classlist.remove ("fraca', 'media', 'forte'); 
+    if (tamanhosenha > 11)(
+        forçasenha.classlist.add('forte');
+    } else if (tamanhosenha > 5 && tamanhosenha < 12)(
+        força senha.classlist.add('media');
+    }else if (tamanhosenha <= 5){
+        forçasenha.classlist.add('fraca');
+    }
+
+}
+
 
         
